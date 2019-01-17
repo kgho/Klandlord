@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-//class 08
+//class08
 /// <summary>
 ///  每个模块的基类
 ///  保存自身注册的一系列消息

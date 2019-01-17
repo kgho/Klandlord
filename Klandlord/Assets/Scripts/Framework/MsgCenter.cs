@@ -18,6 +18,9 @@ public class MsgCenter : MonoBase
     {
         Instance = this;
 
+        gameObject.AddComponent<NetManager>();
+        gameObject.AddComponent<UIManager>();
+
         DontDestroyOnLoad(gameObject);
     }
 

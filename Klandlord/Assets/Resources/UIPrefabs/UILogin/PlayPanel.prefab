@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 224576731252312126}
   - component: {fileID: 222723760664967948}
   - component: {fileID: 114378917826432710}
+  - component: {fileID: 114183809855056474}
   m_Layer: 5
   m_Name: PlayPanel
   m_TagString: Untagged
@@ -131,6 +132,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Start
+--- !u!114 &114183809855056474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561757224706684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18666c2ca584cf4e83f8f05bccacaa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneID: 0
 --- !u!114 &114378917826432710
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -26,14 +26,14 @@ public class PlayPanel : UIBase
 
     void StartClick()
     {
-        
+        Dispatch(AreaCode.UI, UIEvent.START_PANEL_ACTIVE, true);
     }
 
     void RegistClick()
     {
-
+        Dispatch(AreaCode.UI, UIEvent.REGIST_PANEL_ACTIVE, true);
     }
 
-    
+
 }
 
