@@ -39,6 +39,9 @@ public class MsgCenter : MonoBase
             case AreaCode.UI:
                 UIManager.Instance.Execute(eventCode, message);
                 break;
+            case AreaCode.NET:
+                NetManager.Instance.Execute(eventCode, message);
+                break;
             default:
                 break;
         }

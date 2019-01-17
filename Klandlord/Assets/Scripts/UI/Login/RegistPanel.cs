@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Net;
+using Protocol.Dto;
+using Protocol.Code;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +14,20 @@ public class RegistPanel : UIBase
     private InputField inputAcc;
     private InputField inputPwd;
     private InputField inputPwd2;
+
+    private SocketMsg socketMsg;
+
+    public override void Execute(int eventCode, object message)
+    {
+        switch (eventCode)
+        {
+            case UIEvent.REGIST_PANEL_ACTIVE:
+                setPanelActive((bool)message);
+                break;
+            default:
+                break;
+        }
+    }
 
     void Start()
     {
@@ -25,25 +42,20 @@ public class RegistPanel : UIBase
         btnRegist.onClick.AddListener(RegistClick);
         btnClose.onClick.AddListener(CloseClick);
 
-
+        socketMsg = new SocketMsg();
         setPanelActive(false);
     }
-
-    public override void Execute(int eventCode, object message)
-    {
-        switch (eventCode)
-        {
-            case UIEvent.REGIST_PANEL_ACTIVE:
-                setPanelActive((bool)message);
-                break;
-            default:
-                break;
-        }
-    }
-
+    
     public void RegistClick()
     {
+        AccountDto dto = new AccountDto(inputAcc.text, inputPwd.text);
+        socketMsg.Change(OpCode.ACCOUNT, AccountCode.REGIST_CREQ, dto);
+        Dispatch(AreaCode.NET, 0, socketMsg);
+    }
 
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 
     public void CloseClick()

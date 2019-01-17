@@ -7,5 +7,10 @@ public class AreaCode
     /// UI模块
     /// </summary>
     public const int UI = 0;
+
+    /// <summary>
+    /// Netork module
+    /// </summary>
+    public const int NET = 1;
 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -16,7 +17,7 @@ public class ClientPeer
     private int port;
 
     //construct Connect Object
-    public ClientPeer(string ip,int port)
+    public ClientPeer(string ip, int port)
     {
         try
         {
@@ -24,7 +25,7 @@ public class ClientPeer
             this.ip = ip;
             this.port = port;
         }
-        catch(System.Exception e)
+        catch (System.Exception e)
         {
             Debug.LogError(e.Message);
         }
@@ -38,10 +39,39 @@ public class ClientPeer
             Debug.Log("connect server successful!");
 
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Debug.LogError(e.Message);
         }
     }
 
+
+
+    /// <summary>
+    /// send message
+    /// </summary>
+    /// <param name="opCode"></param>
+    /// <param name="subCode"></param>
+    /// <param name="value"></param>
+    public void Send(int opCode, int subCode, object value)
+    {
+        SocketMsg msg = new SocketMsg(opCode, subCode, value);
+
+        Send(msg);
+    }
+
+    public void Send(SocketMsg msg)
+    {
+        byte[] data = EncodeTool.EncodeMsg(msg);
+        byte[] packet = EncodeTool.EncodePacket(data);
+
+        try
+        {
+            socket.Send(packet);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }
 }
