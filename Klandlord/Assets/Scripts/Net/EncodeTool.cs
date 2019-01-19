@@ -10,7 +10,7 @@ namespace Assets.Scripts.Net
     public class EncodeTool
     {
         /// <summary>
-        /// 拆包
+        /// 粘包
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -27,6 +27,32 @@ namespace Assets.Scripts.Net
                     Buffer.BlockCopy(ms.GetBuffer(), 0, byteArrary, 0, (int)ms.Length);
 
                     return byteArrary;
+                }
+            }
+        }
+
+        public static byte[] DecodePacket(ref List<byte> dataCache)
+        {
+            if (dataCache.Count < 4)
+                return null;
+            using (MemoryStream ms = new MemoryStream(dataCache.ToArray()))
+            {
+                using (BinaryReader br = new BinaryReader(ms))
+                {
+                    int length = br.ReadInt32();
+                    int dataRemainLength = (int)(ms.Length - ms.Position);
+                    if (length > dataRemainLength)
+                        return null;
+                    //throw new Exception("数据长度不够约定的长度 不能构成一个完整的消息");
+
+                    byte[] data = br.ReadBytes(length);
+
+                    //update data cache
+                    dataCache.Clear();
+                    dataCache.AddRange(br.ReadBytes(dataRemainLength));
+
+                    return data;
+
                 }
             }
         }
@@ -56,6 +82,25 @@ namespace Assets.Scripts.Net
             return data;
         }
 
+        public static SocketMsg DecodeMsg(byte[] data)
+        {
+            MemoryStream ms = new MemoryStream(data);
+            BinaryReader br = new BinaryReader(ms);
+            SocketMsg msg = new SocketMsg();
+            msg.OpCode = br.ReadInt32();
+            msg.SubCode = br.ReadInt32();
+            //remain data
+            if (ms.Length > ms.Position)
+            {
+                byte[] valueBytes = br.ReadBytes((int)(ms.Length - ms.Position));
+                object value = DecodeObj(valueBytes);
+                msg.Value = value;
+            }
+            br.Close();
+            ms.Close();
+            return msg;
+        }
+
         /// <summary>
         /// 把一个类转换为byte[]
         /// </summary>
@@ -68,6 +113,16 @@ namespace Assets.Scripts.Net
                 byte[] valueBytes = new byte[ms.Length];
                 Buffer.BlockCopy(ms.GetBuffer(), 0, valueBytes, 0, (int)ms.Length);
                 return valueBytes;
+            }
+        }
+
+        public static object DecodeObj(byte[] valueBytes)
+        {
+            using (MemoryStream ms = new MemoryStream(valueBytes))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                object value = bf.Deserialize(ms);
+                return value;
             }
         }
     }

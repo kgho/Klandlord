@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 //class06    UIRoot,所有假面的父节点，挂载该脚本管理所有的界面
-public class UIMgr : MonoBehaviour {
+public class UIMgr : MonoBehaviour
+{
 
     [SerializeField] RectTransform layer;
 
@@ -12,7 +13,7 @@ public class UIMgr : MonoBehaviour {
     /// <summary>
     /// Get resources load instance
     /// </summary>
-    public  static UIMgr Instance
+    public static UIMgr Instance
     {
         get
         {
@@ -21,7 +22,7 @@ public class UIMgr : MonoBehaviour {
                 GameObject go = GameObject.Find("UIRoot");
                 if (go == null)
                 {
-                    GameObject prefab = Resources.Load<GameObject>("UIPrefabs/UIRoot") as GameObject ;
+                    GameObject prefab = Resources.Load<GameObject>("UIPrefabs/UIRoot") as GameObject;
                     go = Instantiate(prefab);
                     Transform rootTf = go.transform;
                     rootTf.SetParent(null);
@@ -36,12 +37,12 @@ public class UIMgr : MonoBehaviour {
 
     private void OnInit()
     {
-      //SceneManager.sceneLoaded-=  
+        //SceneManager.sceneLoaded-=  
     }
 
-   
 
-    private void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("on scene changed!!!!");
         int curSceneID = scene.buildIndex;
@@ -49,7 +50,7 @@ public class UIMgr : MonoBehaviour {
 
     }
 
-	public void OpenWindow(string winName,int sceneID)
+    public void OpenWindow(string winName, int sceneID)
     {
         string uiPath = string.Format("UIPrefabs/{0}", winName);
         GameObject prefab = Resources.Load<GameObject>(uiPath);
@@ -60,7 +61,7 @@ public class UIMgr : MonoBehaviour {
         }
         GameObject uiGo = Instantiate(prefab);
         RectTransform rectTransform = uiGo.transform as RectTransform;
-        rectTransform.parent = layer;
+        rectTransform.SetParent(layer);
         rectTransform.anchoredPosition = Vector2.zero;
 
         //UIBase

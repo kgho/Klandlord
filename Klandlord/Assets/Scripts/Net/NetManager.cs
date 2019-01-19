@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Net;
+using Protocol.Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +40,35 @@ public class NetManager : ManagerBase
         client.Connect();
     }
 
-    //private void Update()
-    //{
-    //    if (client == null)
-    //        return;
-    //    while(client.SocketMsgQueue)
-    //}
+    private void Update()
+    {
+        if (client == null)
+            return;
+        while (client.SocketMsgQueue.Count > 0)
+        {
+            SocketMsg msg = client.SocketMsgQueue.Dequeue();
+            ReceiveSocketMsg(msg);
+        }
+    }
+
+
+
+    HandlerBase accountHandler = new AccoutHandler();
+    /// <summary>
+    /// handle the message from server
+    /// </summary>
+    /// <param name="msg"></param>
+    /// <returns></returns>
+    private void ReceiveSocketMsg(SocketMsg msg)
+    {
+        switch (msg.OpCode)
+        {
+            case OpCode.ACCOUNT:
+                accountHandler.OnReceive(msg.SubCode, msg.Value);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
