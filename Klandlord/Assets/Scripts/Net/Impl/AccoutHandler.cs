@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class AccoutHandler : HandlerBase
 {
@@ -29,7 +30,19 @@ public class AccoutHandler : HandlerBase
         switch (result)
         {
             case 0:
-                promptMsg.Change("Sign Up Successful!", UnityEngine.Color.green);
+                promptMsg.Change("Sign Up Successful!", Color.green);
+                Dispatch(AreaCode.UI, UIEvent.PROMPT_MSG, promptMsg);
+                break;
+            case -1:
+                promptMsg.Change("Error:Account already exist!", Color.red);
+                Dispatch(AreaCode.UI, UIEvent.PROMPT_MSG, promptMsg);
+                break;
+            case -2:
+                promptMsg.Change("Error:Account is invalid!", Color.red);
+                Dispatch(AreaCode.UI, UIEvent.PROMPT_MSG, promptMsg);
+                break;
+            case -3:
+                promptMsg.Change("Error:Passord is invalid", Color.red);
                 Dispatch(AreaCode.UI, UIEvent.PROMPT_MSG, promptMsg);
                 break;
             default:

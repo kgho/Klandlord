@@ -15,6 +15,11 @@ namespace Server.Cache
         //账号的数据模型
         private Dictionary<string, AccountModel> accModelDict = new Dictionary<string, AccountModel>();
 
+        public bool IsExist(string account)
+        {
+            return accModelDict.ContainsKey(account);
+        }
+
         /// <summary>
         /// 存储账号的ID
         /// 数据库用于自增处理
