@@ -12,5 +12,7 @@ public class AreaCode
     /// Netork module
     /// </summary>
     public const int NET = 1;
+
+    public const int SCENE = 5;
 }
 

@@ -26,7 +26,7 @@ public class PlayPanel : UIBase
 
     void StartClick()
     {
-        Dispatch(AreaCode.UI, UIEvent.START_PANEL_ACTIVE, true);
+        Dispatch(AreaCode.UI, UIEvent.Login_PANEL_ACTIVE, true);
     }
 
     void RegistClick()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//class06    UIRoot,所有假面的父节点，挂载该脚本管理所有的界面
+//class06    UIRoot,所有界面的父节点，挂载该脚本管理所有的界面
 public class UIMgr : MonoBehaviour
 {
 
@@ -28,7 +28,7 @@ public class UIMgr : MonoBehaviour
                     rootTf.SetParent(null);
                 }
                 mInstance = go.GetComponent<UIMgr>();
-
+                mInstance.OnInit();
                 DontDestroyOnLoad(go);
             }
             return mInstance;
@@ -37,17 +37,28 @@ public class UIMgr : MonoBehaviour
 
     private void OnInit()
     {
-        //SceneManager.sceneLoaded-=  
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("on scene changed!!!!");
         int curSceneID = scene.buildIndex;
         int count = layer.childCount;
-
+        for (int i = 0; i < count; i++)
+        {
+            var child = layer.GetChild(i);
+            UIBase uiBase = child.GetComponent<UIBase>();
+            if (uiBase.sceneID != curSceneID)
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 
     public void OpenWindow(string winName, int sceneID)

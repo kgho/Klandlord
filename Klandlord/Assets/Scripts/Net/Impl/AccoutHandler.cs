@@ -1,4 +1,5 @@
-﻿using Protocol.Code;
+﻿using Assets.Scripts.Net;
+using Protocol.Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ public class AccoutHandler : HandlerBase
             case AccountCode.REGIST_SRES:
                 registResponse((int)value);
                 break;
+            case AccountCode.LOGIN:
+                loginResponse((int)value);
+                break;
             default:
                 break;
         }
@@ -21,6 +25,27 @@ public class AccoutHandler : HandlerBase
 
 
     public PromptMsg promptMsg = new PromptMsg();
+
+
+    private void loginResponse(int result)
+    {
+        switch (result)
+        {
+            case 0:
+                //load Main scene
+                LoadSceneMsg msg = new LoadSceneMsg(1, () =>
+                {
+                    //向服务器或去改账号下是否有角色
+                    SocketMsg socketMsg = new SocketMsg(OpCode.USER, UserCode.GET_INFO_CREQ, null);
+                    Dispatch(AreaCode.NET, 0, socketMsg);
+                });
+                Dispatch(AreaCode.SCENE, SceneEvent.LOAD_SCENE, msg);
+                break;
+            default:
+                break;
+        }
+    }
+
     /// <summary>
     /// register response
     /// </summary>
@@ -49,4 +74,6 @@ public class AccoutHandler : HandlerBase
                 break;
         }
     }
+
+  
 }

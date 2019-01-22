@@ -26,8 +26,15 @@ namespace Server.Logic
                 case AccountCode.REGIST_CREQ:
                     {
                         AccountDto dto = value as AccountDto;
-                        Console.Write("Player register requeest... Account:{0},Password:{1}.", dto.Account, dto.Password);
+                        Console.Write(string.Format("Player register request... Account:{0},Password:{1}.", dto.Account, dto.Password));
                         Regist(client, dto.Account, dto.Password);
+                    }
+                    break;
+                case AccountCode.LOGIN:
+                    {
+                        AccountDto dto = value as AccountDto;
+                        Console.Write(string.Format("Player login request... Account:{0},Password:{1}.", dto.Account, dto.Password));
+                        Login(client, dto.Account, dto.Password);
                     }
                     break;
                 default:
@@ -60,7 +67,36 @@ namespace Server.Logic
 
                 accountCache.Create(account, password);
                 client.Send(OpCode.ACCOUNT, AccountCode.REGIST_SRES, 0);
-                Console.WriteLine(string.Format("Sign Up Successfule!"));
+                Console.WriteLine(string.Format("Sign Up Successfully!"));
+            });
+        }
+
+        private void Login(ClientPeer client, string account, string password)
+        {
+            SingleExecute.Instance.Execute(() =>
+            {
+                if (!accountCache.IsExist(account))
+                {
+                    client.Send(OpCode.ACCOUNT, AccountCode.LOGIN, -1);
+                    Console.WriteLine(string.Format("Error:Account doesn't exist!"));
+                    return;
+                }
+                if (!accountCache.IsMatch(account, password))
+                {
+                    client.Send(OpCode.ACCOUNT, AccountCode.LOGIN, -2);
+                    Console.WriteLine(string.Format("Error:Password dosen't match!"));
+                    return;
+                }
+                if (accountCache.IsOnline(account))
+                {
+                    client.Send(OpCode.ACCOUNT, AccountCode.LOGIN, -3);
+                    Console.WriteLine(string.Format("Error:Account is online!"));
+                    return;
+                }
+
+                accountCache.OnLine(client, account);
+                client.Send(OpCode.ACCOUNT, AccountCode.LOGIN, 0);
+                Console.WriteLine(string.Format("Sign in Successfully!"));
             });
         }
     }

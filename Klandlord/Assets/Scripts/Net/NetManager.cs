@@ -66,6 +66,9 @@ public class NetManager : ManagerBase
             case OpCode.ACCOUNT:
                 accountHandler.OnReceive(msg.SubCode, msg.Value);
                 break;
+            case OpCode.USER:
+
+                break;
             default:
                 break;
         }

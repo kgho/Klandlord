@@ -11,11 +11,7 @@ public class LoginScene : MonoBehaviour
         UIMgr.Instance.OpenWindow("UILogin/PlayPanel", SceneID.Login);
         UIMgr.Instance.OpenWindow("UILogin/RegistPanel", SceneID.Login);
         UIMgr.Instance.OpenWindow("PromptPanel", SceneID.Login);
+        UIMgr.Instance.OpenWindow("UILogin/LoginPanel", SceneID.Login);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
