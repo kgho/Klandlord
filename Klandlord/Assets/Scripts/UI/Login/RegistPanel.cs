@@ -44,6 +44,7 @@ public class RegistPanel : UIBase
         btnClose.onClick.AddListener(CloseClick);
 
         socketMsg = new SocketMsg();
+        promptMsg = new PromptMsg();
         setPanelActive(false);
     }
 

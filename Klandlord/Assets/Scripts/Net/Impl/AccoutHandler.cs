@@ -35,7 +35,7 @@ public class AccoutHandler : HandlerBase
                 //load Main scene
                 LoadSceneMsg msg = new LoadSceneMsg(1, () =>
                 {
-                    //向服务器或去改账号下是否有角色
+                    //向服务器获取该账号下是否有角色
                     SocketMsg socketMsg = new SocketMsg(OpCode.USER, UserCode.GET_INFO_CREQ, null);
                     Dispatch(AreaCode.NET, 0, socketMsg);
                 });

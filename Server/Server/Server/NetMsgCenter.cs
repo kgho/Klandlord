@@ -12,7 +12,7 @@ namespace Server
     public class NetMsgCenter : IApplication
     {
         IHandler account = new AccountHandler();
-
+        IHandler user = new UserHandler();
 
         public void OnDisconnect(ClientPeer client)
         {
@@ -25,6 +25,9 @@ namespace Server
             {
                 case OpCode.ACCOUNT:
                     account.OnRecive(client, msg.SubCode, msg.Value);
+                    break;
+                case OpCode.USER:
+                    user.OnRecive(client, msg.SubCode, msg.Value);
                     break;
                 default:
                     break;

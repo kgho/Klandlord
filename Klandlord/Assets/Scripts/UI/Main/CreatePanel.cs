@@ -35,7 +35,10 @@ public class CreatePanel : UIBase
     {
         InputName = transform.Find("InputFieldName").GetComponent<InputField>();
         BtnCreate = transform.Find("ButtonCreate").GetComponent<Button>();
+        BtnCreate.onClick.AddListener(CreateClick);
 
+        promptMsg = new PromptMsg();
+        socketMsg = new SocketMsg();
         setPanelActive(false);
     }
 

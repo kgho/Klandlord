@@ -54,6 +54,7 @@ public class NetManager : ManagerBase
 
 
     HandlerBase accountHandler = new AccoutHandler();
+    HandlerBase userHandler = new UserHandler();
     /// <summary>
     /// handle the message from server
     /// </summary>
@@ -67,7 +68,7 @@ public class NetManager : ManagerBase
                 accountHandler.OnReceive(msg.SubCode, msg.Value);
                 break;
             case OpCode.USER:
-
+                userHandler.OnReceive(msg.SubCode, msg.Value);
                 break;
             default:
                 break;

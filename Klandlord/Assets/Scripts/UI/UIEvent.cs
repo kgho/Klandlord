@@ -5,6 +5,8 @@ public class UIEvent
     public const int REGIST_PANEL_ACTIVE = 1;//regist panel show
     public const int CREATE_PANEL_ACTIVE = 2;
 
+    public const int REFRESH_INFO_PANEL = 10;
+
     public const int PROMPT_MSG = 9999;
 }
 

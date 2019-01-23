@@ -1,5 +1,6 @@
 ﻿using AhpilyServer;
 using AhpilyServer.Concurrent;
+using Server.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,6 +98,15 @@ namespace Server.Cache
             string account = clientAccDict[client];
             AccountModel model = accModelDict[account];
             return model.Id;
+        }
+
+        /// <summary>
+        /// Get online-player number
+        /// </summary>
+        /// <returns></returns>
+        public int GetOnlineNum()
+        {
+            return accClientDict.Count();
         }
     }
 }
