@@ -40,9 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\AccountCode.cs" />
+    <Compile Include="Code\MatchCode.cs" />
     <Compile Include="Code\OpCode.cs" />
     <Compile Include="Code\UserCode.cs" />
     <Compile Include="Dto\AccountDto.cs" />
+    <Compile Include="Dto\MatchRoomDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

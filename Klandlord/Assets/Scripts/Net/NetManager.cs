@@ -70,6 +70,9 @@ public class NetManager : ManagerBase
             case OpCode.USER:
                 userHandler.OnReceive(msg.SubCode, msg.Value);
                 break;
+            case OpCode.MATCH:
+
+                break;
             default:
                 break;
         }

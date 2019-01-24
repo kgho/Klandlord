@@ -8,7 +8,6 @@ using UnityEngine.UI;
 //class15
 public class RegistPanel : UIBase
 {
-
     private Button btnRegist;
     private Button btnClose;
     private InputField inputAcc;

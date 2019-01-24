@@ -13,7 +13,7 @@ namespace Server
     {
         IHandler account = new AccountHandler();
         IHandler user = new UserHandler();
-
+        IHandler match = new MatchHandler();
         public void OnDisconnect(ClientPeer client)
         {
             throw new NotImplementedException();
@@ -28,6 +28,9 @@ namespace Server
                     break;
                 case OpCode.USER:
                     user.OnRecive(client, msg.SubCode, msg.Value);
+                    break;
+                case OpCode.MATCH:
+                    match.OnRecive(client, msg.SubCode, msg.Value);
                     break;
                 default:
                     break;

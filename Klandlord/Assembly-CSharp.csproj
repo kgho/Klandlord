@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Net\EncodeTool.cs" />
     <Compile Include="Assets\Scripts\Net\HandlerBase.cs" />
     <Compile Include="Assets\Scripts\Net\Impl\AccoutHandler.cs" />
+    <Compile Include="Assets\Scripts\Net\Impl\MatchHandler.cs" />
     <Compile Include="Assets\Scripts\Net\Impl\UserHandler.cs" />
     <Compile Include="Assets\Scripts\Net\NetManager.cs" />
     <Compile Include="Assets\Scripts\Net\SocketMsg.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Assets\Scripts\UI\Login\RegistPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Main\CreatePanel.cs" />
     <Compile Include="Assets\Scripts\UI\Main\InfoPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Main\MatchPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Msg\PromptMsg.cs" />
     <Compile Include="Assets\Scripts\UI\PromptPanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />

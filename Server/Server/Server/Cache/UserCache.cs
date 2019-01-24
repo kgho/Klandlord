@@ -56,6 +56,11 @@ namespace Server.Cache
             return accIdUserIdDict[accountId];
         }
 
+        public int GetId(ClientPeer client)
+        {
+            return clientIdDict[client];
+        }
+
         //save online-palyer,only online-player have Client object
         private Dictionary<int, ClientPeer> idClientDict = new Dictionary<int, ClientPeer>();
         private Dictionary<ClientPeer, int> clientIdDict = new Dictionary<ClientPeer, int>();

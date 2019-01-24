@@ -15,6 +15,7 @@ public class CreatePanel : UIBase
 
     private void Awake()
     {
+        setPanelActive(false);
         Bind(UIEvent.CREATE_PANEL_ACTIVE);
     }
 
@@ -39,7 +40,6 @@ public class CreatePanel : UIBase
 
         promptMsg = new PromptMsg();
         socketMsg = new SocketMsg();
-        setPanelActive(false);
     }
 
     public override void OnDestroy()

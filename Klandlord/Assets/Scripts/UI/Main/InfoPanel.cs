@@ -1,4 +1,6 @@
-﻿using Protocol.Dto;
+﻿using Assets.Scripts.Net;
+using Protocol.Code;
+using Protocol.Dto;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +14,8 @@ public class InfoPanel : UIBase
     private Text txtExp;
     private Text txtBeen;
     private Button BtnMatch;
+
+    private SocketMsg socketMsg;
 
     public void Awake()
     {
@@ -43,12 +47,16 @@ public class InfoPanel : UIBase
         BtnMatch = transform.Find("ButtonMatch").GetComponent<Button>();
 
         BtnMatch.onClick.AddListener(BtnMatchClick);
+
+        socketMsg = new SocketMsg();
     }
 
 
     void BtnMatchClick()
     {
-
+        Dispatch(AreaCode.UI, UIEvent.MATCH_PANEL_ACTIVE, true);
+        socketMsg.Change(OpCode.MATCH, MatchCode.ENTER_CREQ, null);
+        Dispatch(AreaCode.NET, 0, socketMsg);
     }
 
     private void RefreshPanel(string name, int lv, int exp, int been)

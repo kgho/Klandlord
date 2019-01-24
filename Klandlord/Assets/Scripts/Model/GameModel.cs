@@ -9,10 +9,12 @@ using System.Text;
 /// </summary>
 public class GameModel
 {
-    //online-user data
+    //login user data
     public UserDto UserDto { get; set; }
 
     public int Id { get { return UserDto.Id; } }
+
+    public MatchRoomDto MatchRoomDto { get; set; }
 
 }
 

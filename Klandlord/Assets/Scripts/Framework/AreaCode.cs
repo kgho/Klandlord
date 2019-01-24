@@ -13,6 +13,8 @@ public class AreaCode
     /// </summary>
     public const int NET = 1;
 
+    public const int MATCH = 2;
+
     public const int SCENE = 5;
 }
 
