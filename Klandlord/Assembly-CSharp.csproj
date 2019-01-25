@@ -81,6 +81,11 @@
     <Compile Include="Assets\Scripts\Scene\SceneEvent.cs" />
     <Compile Include="Assets\Scripts\Scene\SceneID.cs" />
     <Compile Include="Assets\Scripts\Scene\SceneMgr.cs" />
+    <Compile Include="Assets\Scripts\UI\Fight\ButtonPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Fight\LeftStatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Fight\MyStatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Fight\StatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Fight\UpPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Login\LoginPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Login\PlayPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Login\RegistPanel.cs" />

@@ -22,6 +22,23 @@ namespace Protocol.Dto
             this.UserIdList = new List<int>();
         }
 
+        public void Add(UserDto newUser)
+        {
+            this.UserIdUserDtoDict.Add(newUser.Id, newUser);
+            this.UserIdList.Add(newUser.Id);
+        }
+
+        public void Leave(int userId)
+        {
+            this.UserIdUserDtoDict.Remove(userId);
+            this.UserIdList.Remove(userId);
+        }
+
+        public void Ready(int userId)
+        {
+            this.ReadyUserIdList.Add(userId);
+        }
+
         public int LeftId;//left player id
         public int RightId;
 

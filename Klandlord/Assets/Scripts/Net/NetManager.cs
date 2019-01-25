@@ -55,6 +55,7 @@ public class NetManager : ManagerBase
 
     HandlerBase accountHandler = new AccoutHandler();
     HandlerBase userHandler = new UserHandler();
+    HandlerBase matchHandler = new MatchHandler();
     /// <summary>
     /// handle the message from server
     /// </summary>
@@ -71,7 +72,7 @@ public class NetManager : ManagerBase
                 userHandler.OnReceive(msg.SubCode, msg.Value);
                 break;
             case OpCode.MATCH:
-
+                matchHandler.OnReceive(msg.SubCode, msg.Value);
                 break;
             default:
                 break;

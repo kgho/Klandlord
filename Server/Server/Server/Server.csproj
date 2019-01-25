@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\MatchCache.cs" />
+    <Compile Include="Cache\Match\MatchCache.cs" />
     <Compile Include="Cache\Match\MatchRoom.cs" />
     <Compile Include="Logic\MatchHandler.cs" />
     <Compile Include="Model\AccountModel.cs" />

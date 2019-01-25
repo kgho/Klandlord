@@ -16,5 +16,10 @@ public class GameModel
 
     public MatchRoomDto MatchRoomDto { get; set; }
 
+    public UserDto GetUserDto(int userId)
+    {
+        return MatchRoomDto.UserIdUserDtoDict[userId];
+    }
+
 }
 

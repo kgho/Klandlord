@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AhpilyServer;
+using GameServer.Server.Cache;
 using Protocol.Code;
 using Protocol.Dto;
 using Server.Cache;
@@ -48,12 +45,13 @@ namespace Server.Logic
                     return;
                 }
                 MatchRoom room = matchCache.Enter(userId, client);
+
                 //broadcast to all user in room except current client,
 
-                UserModel model = userCache.GetModelByAccountId(userId);
-                UserDto userDto = new UserDto(model.ID, model.Name, model.Been, model.WinCount, model.LoseCount, model.RunCount, model.LV, model.Exp);
+                //UserModel model = userCache.GetModelByAccountId(userId);
+                //UserDto userDto = new UserDto(model.ID, model.Name, model.Been, model.WinCount, model.LoseCount, model.RunCount, model.LV, model.Exp);
 
-                room.Broadcast(OpCode.MATCH, MatchCode.ENTER_BORADCAST, userDto, client);
+                //room.Broadcast(OpCode.MATCH, MatchCode.ENTER_BORADCAST, userDto, client);
 
 
                 MatchRoomDto dto = makeRoomDto(room);
