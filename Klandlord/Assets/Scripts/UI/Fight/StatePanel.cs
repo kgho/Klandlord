@@ -19,6 +19,32 @@ public class StatePanel : UIBase
         Bind(UIEvent.HIDE_TIMER_PANEL);
     }
 
+    public override void Execute(int eventCode, object message)
+    {
+        switch (eventCode)
+        {
+            case UIEvent.PLAYER_HIDE_STATE:
+                {
+
+                }
+                break;
+            case UIEvent.PLAYER_ENTER:
+                {
+                    if (userDto == null)
+                        break;
+                    int userId = (int)message;
+                    if (userDto.Id == userId)
+                    {
+                        setPanelActive(true);
+                        SetName(userDto.Name);
+                    }
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
     //user data
     protected UserDto userDto;
 
@@ -37,6 +63,7 @@ public class StatePanel : UIBase
         textReady.gameObject.SetActive(false);
         textTime.gameObject.SetActive(false);
     }
+
 
     protected virtual void ReadyState()
     {
@@ -78,18 +105,6 @@ public class StatePanel : UIBase
     /// </summary>
     private int textTImer = -1;
 
-    public override void Execute(int eventCode, object message)
-    {
-        switch (eventCode)
-        {
-            case UIEvent.PLAYER_HIDE_STATE:
-                {
 
-                }
-                break;
-            default:
-                break;
-        }
-    }
 }
 

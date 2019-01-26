@@ -13,7 +13,7 @@ using System.Text;
 public class MsgCenter : MonoBase
 {
     public static MsgCenter Instance = null;
-
+    
     private void Awake()
     {
         Instance = this;

@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbef5ebe26103474a90b42eb7685328c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneID: 0
+  sceneID: 2
 --- !u!1 &351379863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,6 +1986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454259280}
+  - component: {fileID: 1454259281}
   m_Layer: 5
   m_Name: RightPlayer
   m_TagString: Untagged
@@ -2015,6 +2016,18 @@ RectTransform:
   m_AnchoredPosition: {x: 959.9999, y: 0}
   m_SizeDelta: {x: 640, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1454259281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1454259279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274af21058d7f2d46b6ba64818533f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneID: 0
 --- !u!1 &1487655193
 GameObject:
   m_ObjectHideFlags: 0

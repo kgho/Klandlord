@@ -9,6 +9,6 @@ namespace Protocol.Code
     {
         public const int ENTER_CREQ = 0;
         public const int ENTER_SRES = 1;
-        public const int ENTER_BORADCAST = 2;
+        public const int ENTER_BROADCAST = 2;
     }
 }

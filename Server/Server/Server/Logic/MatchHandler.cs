@@ -46,14 +46,13 @@ namespace Server.Logic
                 }
                 MatchRoom room = matchCache.Enter(userId, client);
 
-                //broadcast to all user in room except current client,
+                //broadcast to all user in room except current client
+                UserModel model = userCache.GetModelByAccountId(userId);
+                UserDto userDto = new UserDto(model.ID, model.Name, model.Been, model.WinCount, model.LoseCount, model.RunCount, model.LV, model.Exp);
 
-                //UserModel model = userCache.GetModelByAccountId(userId);
-                //UserDto userDto = new UserDto(model.ID, model.Name, model.Been, model.WinCount, model.LoseCount, model.RunCount, model.LV, model.Exp);
+                room.Broadcast(OpCode.MATCH, MatchCode.ENTER_BROADCAST, userDto, client);
 
-                //room.Broadcast(OpCode.MATCH, MatchCode.ENTER_BORADCAST, userDto, client);
-
-
+                //send user's room data to user's client
                 MatchRoomDto dto = makeRoomDto(room);
                 client.Send(OpCode.MATCH, MatchCode.ENTER_SRES, dto);
                 Console.WriteLine("Player enter room......");
