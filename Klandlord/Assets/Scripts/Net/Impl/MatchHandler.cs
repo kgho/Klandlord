@@ -18,6 +18,9 @@ public class MatchHandler : HandlerBase
             case MatchCode.ENTER_BROADCAST:
                 enterBro(value as UserDto);
                 break;
+            case MatchCode.READY_BROADCAST:
+                readyBroadcast((int)value);
+                break;
             default:
                 break;
         }
@@ -33,6 +36,7 @@ public class MatchHandler : HandlerBase
     /// other palyer enter room
     /// </summary>
     /// <param name="newUser"></param>
+    /// 
     private void enterBro(UserDto newUser)
     {
         //update room data
@@ -51,6 +55,19 @@ public class MatchHandler : HandlerBase
             Dispatch(AreaCode.UI, UIEvent.SET_RIGHT_PLAYER_DATA, rightUserDto);
         }
         Dispatch(AreaCode.UI, UIEvent.PLAYER_ENTER, newUser.Id);
+    }
+
+
+    private void readyBroadcast(int readyUserId)
+    {
+        //save data
+        Models.GameModel.MatchRoomDto.Ready(readyUserId);
+        Dispatch(AreaCode.UI, UIEvent.PLAYER_READY, readyUserId);
+
+        if (readyUserId == Models.GameModel.UserDto.Id)
+        {
+            Dispatch(AreaCode.UI, UIEvent.PLAYER_HIDE_READY_BUTTON, null);
+        }
     }
 
     //update other player data show

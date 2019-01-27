@@ -26,6 +26,9 @@ namespace Server.Logic
                 case MatchCode.ENTER_CREQ:
                     enter(client);
                     break;
+                case MatchCode.READY_CREQ:
+                    ready(client);
+                    break;
                 default:
                     break;
             }
@@ -73,6 +76,32 @@ namespace Server.Logic
             }
             dto.ReadyUserIdList = room.ReadyUserIdList;
             return dto;
+        }
+
+        /// <summary>
+        /// player ready
+        /// </summary>
+        /// <param name="client"></param>
+        private void ready(ClientPeer client)
+        {
+            SingleExecute.Instance.Execute(() =>
+            {
+                if (userCache.IsOnline(client) == false)
+                    return;
+                int userId = userCache.GetId(client);
+                if (matchCache.IsMatching(userId) == false)
+                    return;
+
+                MatchRoom room = matchCache.GetRoom(userId);
+                room.Ready(userId);
+                room.Broadcast(OpCode.MATCH, MatchCode.READY_BROADCAST, userId);
+
+                //check:all player is ready
+                if (room.IsAllReady())
+                {
+                    //start play card
+                }
+            });
         }
     }
 }

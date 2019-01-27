@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Net;
+using Protocol.Code;
 using Protocol.Dto;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,11 +11,22 @@ public class MyStatePanel : StatePanel
     protected override void Awake()
     {
         base.Awake();
+        Bind(UIEvent.PLAYER_HIDE_READY_BUTTON);
     }
 
     public override void Execute(int eventCode, object message)
     {
         base.Execute(eventCode, message);
+        switch (eventCode)
+        {
+            case UIEvent.PLAYER_HIDE_READY_BUTTON:
+                {
+                    btnReady.gameObject.SetActive(false);
+                    break;
+                }
+            default:
+                break;
+        }
     }
 
     private Button btnDeal;
@@ -48,7 +60,7 @@ public class MyStatePanel : StatePanel
             GrabOnCliek(false);
         });
 
-        btnReady.onClick.AddListener(ReadyState);
+        btnReady.onClick.AddListener(ReadyClick);
 
         btnGrab.gameObject.SetActive(false);
         btnNGrab.gameObject.SetActive(false);
@@ -59,7 +71,6 @@ public class MyStatePanel : StatePanel
 
         UserDto myUserDto = Models.GameModel.MatchRoomDto.UserIdUserDtoDict[Models.GameModel.UserDto.Id];
         this.userDto = myUserDto;
-        Debug.Log(userDto.Name);
         SetName(userDto.Name);
     }
 
@@ -82,5 +93,11 @@ public class MyStatePanel : StatePanel
     void GrabOnCliek(bool result)
     {
 
+    }
+
+    void ReadyClick()
+    {
+        socketMsg.Change(OpCode.MATCH, MatchCode.READY_CREQ, null);
+        Dispatch(AreaCode.NET, 0, socketMsg);
     }
 }

@@ -40,6 +40,15 @@ public class StatePanel : UIBase
                     }
                     break;
                 }
+            case UIEvent.PLAYER_READY:
+                {
+                    if (userDto == null)
+                        break;
+                    int userId = (int)message;
+                    if (userDto.Id == userId)
+                        ReadyState();
+                    break;
+                }
             default:
                 break;
         }

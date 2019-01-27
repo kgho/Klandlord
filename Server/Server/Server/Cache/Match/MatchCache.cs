@@ -33,6 +33,18 @@ namespace GameServer.Server.Cache
             return uidRoomIdDict.ContainsKey(userId);
         }
 
+        /// <summary>
+        /// get player room
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public MatchRoom GetRoom(int userId)
+        {
+            int roomId = uidRoomIdDict[userId];
+            MatchRoom room = roomIdModelDict[roomId];
+            return room;
+        }
+
         //enter match queue
         public MatchRoom Enter(int userId, ClientPeer client)
         {

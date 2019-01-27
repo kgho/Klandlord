@@ -6,6 +6,7 @@ Assets/Scenes/0.login.unity
 Assets/Scenes/1.main.unity
 Assets/Scenes/2.fight.unity
 SceneListEnd?
+6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.RightStatePanel
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -188,4 +189,3 @@ e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.LeftStatePanel
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
-6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.RightStatePanel
