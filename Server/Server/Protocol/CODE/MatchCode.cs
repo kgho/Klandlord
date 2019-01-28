@@ -12,5 +12,6 @@ namespace Protocol.Code
         public const int ENTER_BROADCAST = 2;
         public const int READY_CREQ = 3;
         public const int READY_BROADCAST = 4;
+        public const int START_BROADCAST = 5;
     }
 }

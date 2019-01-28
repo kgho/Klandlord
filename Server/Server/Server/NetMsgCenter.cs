@@ -13,7 +13,14 @@ namespace Server
     {
         IHandler account = new AccountHandler();
         IHandler user = new UserHandler();
-        IHandler match = new MatchHandler();
+        MatchHandler match = new MatchHandler();
+        FightHandler fight = new FightHandler();
+
+        public NetMsgCenter()
+        {
+            match.startFight += fight.startFight;
+        }
+
         public void OnDisconnect(ClientPeer client)
         {
             throw new NotImplementedException();

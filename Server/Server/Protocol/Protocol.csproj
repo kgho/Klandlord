@@ -40,11 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\AccountCode.cs" />
+    <Compile Include="Code\FightCode.cs" />
     <Compile Include="Code\MatchCode.cs" />
     <Compile Include="Code\OpCode.cs" />
     <Compile Include="Code\UserCode.cs" />
+    <Compile Include="Constant\CardSuit.cs" />
+    <Compile Include="Constant\CardWeight.cs" />
+    <Compile Include="Constant\Identity.cs" />
     <Compile Include="Dto\AccountDto.cs" />
     <Compile Include="Dto\Fight\CardDto.cs" />
+    <Compile Include="Dto\Fight\PlayerDto.cs" />
     <Compile Include="Dto\MatchRoomDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

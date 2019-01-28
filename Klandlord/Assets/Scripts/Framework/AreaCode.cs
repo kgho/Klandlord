@@ -16,5 +16,7 @@ public class AreaCode
     public const int MATCH = 2;
 
     public const int SCENE = 5;
+
+    public const int CHARACTER = 6;
 }
 

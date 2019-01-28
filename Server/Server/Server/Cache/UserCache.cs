@@ -81,5 +81,11 @@ namespace Server.Cache
             idClientDict.Add(id, client);
             clientIdDict.Add(client, id);
         }
+
+        //get connect by id
+        public ClientPeer GetClientPeer(int id)
+        {
+            return idClientDict[id];
+        }
     }
 }

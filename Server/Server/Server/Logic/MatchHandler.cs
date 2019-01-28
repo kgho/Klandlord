@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AhpilyServer;
 using GameServer.Server.Cache;
 using Protocol.Code;
@@ -9,8 +10,12 @@ using Server.Model;
 
 namespace Server.Logic
 {
+    public delegate void StartFight(List<int> userIdList);
+
     public class MatchHandler : IHandler
     {
+        public StartFight startFight;
+
         private UserCache userCache = Caches.User;
         private MatchCache matchCache = Caches.Match;
 
@@ -78,6 +83,7 @@ namespace Server.Logic
             return dto;
         }
 
+
         /// <summary>
         /// player ready
         /// </summary>
@@ -99,7 +105,12 @@ namespace Server.Logic
                 //check:all player is ready
                 if (room.IsAllReady())
                 {
-                    //start play card
+                    //start play card，deal cards
+                    startFight(room.GetUIdList);
+                    //send all player start play cards
+                    room.Broadcast(OpCode.MATCH, MatchCode.START_BROADCAST, null);
+                    //destroy room
+                    matchCache.Destroy(room);
                 }
             });
         }

@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Protocol.Dto.Fight
 {
+    [Serializable]
     public class CardDto
     {
-        public string Name; 
+        public string Name;
         public int Suit;//spade heart diamond club
         public int Weight; //3 J Q
 

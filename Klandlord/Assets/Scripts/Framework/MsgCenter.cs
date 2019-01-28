@@ -13,7 +13,7 @@ using System.Text;
 public class MsgCenter : MonoBase
 {
     public static MsgCenter Instance = null;
-    
+
     private void Awake()
     {
         Instance = this;
@@ -21,7 +21,7 @@ public class MsgCenter : MonoBase
         gameObject.AddComponent<NetManager>();
         gameObject.AddComponent<UIManager>();
         gameObject.AddComponent<SceneMgr>();
-
+        gameObject.AddComponent<CharacterManager>();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -45,6 +45,9 @@ public class MsgCenter : MonoBase
                 break;
             case AreaCode.SCENE:
                 SceneMgr.Instance.Execute(eventCode, message);
+                break;
+            case AreaCode.CHARACTER:
+                CharacterManager.Instance.Execute(eventCode, message);
                 break;
             default:
                 break;

@@ -21,9 +21,17 @@ public class MatchHandler : HandlerBase
             case MatchCode.READY_BROADCAST:
                 readyBroadcast((int)value);
                 break;
+            case MatchCode.START_BROADCAST:
+                startBroadcast();
+                break;
             default:
                 break;
         }
+    }
+
+    private void startBroadcast()
+    {
+        Dispatch(AreaCode.UI, UIEvent.PLAYER_HIDE_STATE, null);
     }
 
     private void enterResponse(MatchRoomDto matchRoom)

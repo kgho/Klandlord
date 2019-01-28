@@ -25,7 +25,7 @@ public class StatePanel : UIBase
         {
             case UIEvent.PLAYER_HIDE_STATE:
                 {
-
+                    textReady.gameObject.SetActive(false);
                 }
                 break;
             case UIEvent.PLAYER_ENTER:

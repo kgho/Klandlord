@@ -69,5 +69,21 @@ namespace GameServer.Server.Cache
             uidRoomIdDict.Add(userId, room.Id);
             return room;
         }
+
+        /// <summary>
+        /// destroy room
+        /// </summary>
+        /// <param name="room"></param>
+        public void Destroy(MatchRoom room)
+        {
+            roomIdModelDict.Remove(room.Id);
+            foreach (var userId in room.UserIdClientDict.Keys)
+            {
+                uidRoomIdDict.Remove(userId);
+            }
+            room.UserIdClientDict.Clear();
+            room.ReadyUserIdList.Clear();
+            roomQueue.Enqueue(room);
+        }
     }
 }
