@@ -1,4 +1,5 @@
 ﻿using AhpilyServer;
+using Protocol.Constant;
 using Protocol.Dto.Fight;
 using System;
 using System.Collections.Generic;
@@ -133,6 +134,45 @@ namespace Server.Cache.Fight
                     return player.CardList;
             }
             throw new Exception("Don't exist player id:" + userId);
+        }
+
+        public int GetFirstUserId()
+        {
+            return PlayerList[0].UserId;
+        }
+
+        public void SetLandlord(int userId)
+        {
+            foreach (PlayerDto player in PlayerList)
+            {
+                if (player.UserId == userId)
+                {
+                    //set this user to landlord
+                    player.Identity = Identity.LANDLORD;
+                    //give table cards to landlord
+                    for (int i = 0; i < TableCardList.Count; i++)
+                    {
+                        player.Add(TableCardList[i]);
+                    }
+                    //sort hands after get new cards
+                    this.Sort();
+                }
+            }
+        }
+
+        public int GetNextUserId(int currentUserId)
+        {
+            for (int i = 0; i < PlayerList.Count; i++)
+            {
+                if (PlayerList[i].UserId == currentUserId)
+                {
+                    if (i == 2)
+                        return PlayerList[0].UserId;
+                    else
+                        return PlayerList[i + 1].UserId;
+                }
+            }
+            throw new Exception("No user to deal");
         }
     }
 }

@@ -10,12 +10,12 @@ namespace Protocol.Dto.Fight
     public class PlayerDto
     {
         public int UserId;
-        public int Idnetity;//farmer or landlord
+        public int Identity;//farmer or landlord
         public List<CardDto> CardList;//player hands
 
         public PlayerDto(int userId)
         {
-            Idnetity = Identity.FARMER;
+            Identity = Constant.Identity.FARMER;
             UserId = userId;
             CardList = new List<CardDto>();
         }

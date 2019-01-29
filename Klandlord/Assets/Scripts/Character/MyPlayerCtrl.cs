@@ -10,7 +10,8 @@ public class MyPlayerCtrl : CharacterBase
 {
     private void Awake()
     {
-        Bind(CharacterEvent.INIT_MY_CARD);
+        Bind(CharacterEvent.INIT_MY_CARD,
+            CharacterEvent.ADD_MY_CARD);
     }
 
     private Transform cardParent;
@@ -31,6 +32,9 @@ public class MyPlayerCtrl : CharacterBase
                 print(message.ToString());
                 StartCoroutine(initCardList(message as List<CardDto>));
                 break;
+            case CharacterEvent.ADD_MY_CARD:
+
+                break;
             default:
                 break;
         }
@@ -46,9 +50,6 @@ public class MyPlayerCtrl : CharacterBase
         }
     }
 
-
-
-
     private void createGo(CardDto card, int index, GameObject cardPrefab)
     {
         GameObject cardGo = Instantiate(cardPrefab, cardParent) as GameObject;
@@ -58,6 +59,27 @@ public class MyPlayerCtrl : CharacterBase
         cardCtrl.Init(card, index, true);
 
         this.cardCtrlList.Add(cardCtrl);
+    }
+
+    private void addTableCard(GrabDto dto)
+    {
+        List<CardDto> tabelCards = dto.TableCardList;
+        List<CardDto> playerCards = dto.PlayerCardList;
+
+        // reuse the cards create before
+        int index = 0;
+        foreach (var cardCtrl in cardCtrlList)
+        {
+            cardCtrl.gameObject.SetActive(true);
+            cardCtrl.Init(playerCards[index], index, true);
+        }
+
+        //create 3 new card
+        GameObject cardPrefab = Resources.Load<GameObject>("Card/MyCard");
+        for (int i = index; i < playerCards.Count; i++)
+        {
+            createGo(playerCards[i], i, cardPrefab);
+        }
     }
 }
 

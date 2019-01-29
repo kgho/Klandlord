@@ -42,6 +42,7 @@ public class CardCtrl : MonoBehaviour
         }
         Sprite sp = Resources.Load<Sprite>(resPath);
         spriteRenderer.sprite = sp;
+        //spriteRenderer.sprite = Resources.Load(resPath, typeof(Sprite)) as Sprite;
         spriteRenderer.sortingOrder = index;
     }
 }

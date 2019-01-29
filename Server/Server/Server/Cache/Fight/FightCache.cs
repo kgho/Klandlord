@@ -49,5 +49,23 @@ namespace Server.Cache.Fight
             return room;
         }
 
+        public FightRoom GetRoom(int id)
+        {
+            if (idRoomDict.ContainsKey(id) == false)
+                throw new Exception("Don't exist room id:" + id);
+            return idRoomDict[id];
+        }
+
+        public FightRoom GetRoomByUId(int uid)
+        {
+            if (uIddRoomIdDict.ContainsKey(uid) == false)
+            {
+                throw new Exception(string.Format("The user id is {0} is not in room", uid));
+            }
+            int roomId = uIddRoomIdDict[uid];
+            FightRoom room = GetRoom(roomId);
+            return room;
+        }
+
     }
 }

@@ -49,6 +49,15 @@ public class StatePanel : UIBase
                         ReadyState();
                     break;
                 }
+            case UIEvent.PLAY_CHANGE_IDENTITY:
+                {
+                    if (userDto == null)
+                        break;
+                    int userId = (int)message;
+                    if (userDto.Id == userId)
+                        setIdentity(1);
+                    break;
+                }
             default:
                 break;
         }

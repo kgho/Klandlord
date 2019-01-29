@@ -39,6 +39,9 @@ namespace Server
                 case OpCode.MATCH:
                     match.OnRecive(client, msg.SubCode, msg.Value);
                     break;
+                case OpCode.FIGHT:
+                    fight.OnRecive(client, msg.SubCode, msg.Value);
+                    break;
                 default:
                     break;
             }

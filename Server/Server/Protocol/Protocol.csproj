@@ -49,6 +49,7 @@
     <Compile Include="Constant\Identity.cs" />
     <Compile Include="Dto\AccountDto.cs" />
     <Compile Include="Dto\Fight\CardDto.cs" />
+    <Compile Include="Dto\Fight\GrabDto.cs" />
     <Compile Include="Dto\Fight\PlayerDto.cs" />
     <Compile Include="Dto\MatchRoomDto.cs" />
     <Compile Include="Dto\UserDto.cs" />

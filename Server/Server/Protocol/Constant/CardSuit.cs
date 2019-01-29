@@ -24,7 +24,7 @@ namespace Protocol.Constant
                 case SPADE:
                     return "Spade";
                 case DIAMOND:
-                    return "DIAMOND";
+                    return "Diamond";
                 default:
                     throw new Exception("Don't exist:" + "suit");
             }

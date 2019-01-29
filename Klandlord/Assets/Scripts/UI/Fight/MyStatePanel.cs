@@ -11,7 +11,8 @@ public class MyStatePanel : StatePanel
     protected override void Awake()
     {
         base.Awake();
-        Bind(UIEvent.PLAYER_HIDE_READY_BUTTON);
+        Bind(UIEvent.PLAYER_HIDE_READY_BUTTON,
+            UIEvent.SHOW_GRAB_BUTTON);
     }
 
     public override void Execute(int eventCode, object message)
@@ -22,6 +23,13 @@ public class MyStatePanel : StatePanel
             case UIEvent.PLAYER_HIDE_READY_BUTTON:
                 {
                     btnReady.gameObject.SetActive(false);
+                    break;
+                }
+            case UIEvent.SHOW_GRAB_BUTTON:
+                {
+                    bool active = (bool)message;
+                    btnGrab.gameObject.SetActive(active);
+                    btnNGrab.gameObject.SetActive(active);
                     break;
                 }
             default:
@@ -92,7 +100,10 @@ public class MyStatePanel : StatePanel
 
     void GrabOnCliek(bool result)
     {
-
+        socketMsg.Change(OpCode.FIGHT, FightCode.GRAB_LANDLORD_CREQ, result);
+        Dispatch(AreaCode.NET, 0, socketMsg);
+        btnGrab.gameObject.SetActive(false);
+        btnNGrab.gameObject.SetActive(false);
     }
 
     void ReadyClick()
