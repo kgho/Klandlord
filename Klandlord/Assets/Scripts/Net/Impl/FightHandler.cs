@@ -24,6 +24,9 @@ public class FightHandler : HandlerBase
                 Debug.Log("Landlord has benn grabed");
                 grabLandlordBroadcast(value as GrabDto);
                 break;
+            case FightCode.TURN_DEAL_BROADCAST:
+                turnDealBroadcast((int)value);
+                break;
             default:
                 break;
         }
@@ -70,6 +73,14 @@ public class FightHandler : HandlerBase
             eventCode = CharacterEvent.ADD_MY_CARD;
         }
         Dispatch(AreaCode.CHARACTER, eventCode, dto);
+    }
+
+    private void turnDealBroadcast(int userId)
+    {
+        if (Models.GameModel.Id == userId)
+        {
+            Dispatch(AreaCode.UI, UIEvent.SHOW_DEAL_BUTTON, true);
+        }
     }
 
 }

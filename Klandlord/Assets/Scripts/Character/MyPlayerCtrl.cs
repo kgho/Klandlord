@@ -1,4 +1,6 @@
-﻿using Protocol.Dto.Fight;
+﻿using Assets.Scripts.Net;
+using Protocol.Code;
+using Protocol.Dto.Fight;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +13,8 @@ public class MyPlayerCtrl : CharacterBase
     private void Awake()
     {
         Bind(CharacterEvent.INIT_MY_CARD,
-            CharacterEvent.ADD_MY_CARD);
+            CharacterEvent.ADD_MY_CARD,
+            CharacterEvent.DEAL_CARD);
     }
 
     private Transform cardParent;
@@ -22,6 +25,8 @@ public class MyPlayerCtrl : CharacterBase
     {
         cardParent = transform.Find("CardPoint");
         cardCtrlList = new List<CardCtrl>();
+        promptMsg = new PromptMsg();
+        socketMsg = new SocketMsg();
     }
 
     public override void Execute(int eventCode, object message)
@@ -33,7 +38,10 @@ public class MyPlayerCtrl : CharacterBase
                 StartCoroutine(initCardList(message as List<CardDto>));
                 break;
             case CharacterEvent.ADD_MY_CARD:
-
+                addTableCard(message as GrabDto);
+                break;
+            case CharacterEvent.DEAL_CARD:
+                dealSelectCard();
                 break;
             default:
                 break;
@@ -80,6 +88,39 @@ public class MyPlayerCtrl : CharacterBase
         {
             createGo(playerCards[i], i, cardPrefab);
         }
+    }
+
+    private PromptMsg promptMsg;
+    private SocketMsg socketMsg;
+    private void dealSelectCard()
+    {
+        List<CardDto> selectCardList = getSelectedCard();
+        DealDto dto = new DealDto(selectCardList, Models.GameModel.Id);
+        //
+        if (dto.IsRegular == false)
+        {
+            promptMsg.Change("Please select right hands", Color.red);
+            Dispatch(AreaCode.UI, UIEvent.PROMPT_MSG, promptMsg);
+            return;
+        }
+        else
+        {
+            socketMsg.Change(OpCode.FIGHT, FightCode.DEAL_CREQ, dto);
+            Dispatch(AreaCode.NET, 0, socketMsg);
+        }
+    }
+
+    private List<CardDto> getSelectedCard()
+    {
+        List<CardDto> selectCardList = new List<CardDto>();
+        foreach (var cardCtrl in cardCtrlList)
+        {
+            if (cardCtrl.selected == true)
+            {
+                selectCardList.Add(cardCtrl.cardDto);
+            }
+        }
+        return selectCardList;
     }
 }
 

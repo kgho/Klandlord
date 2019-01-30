@@ -46,6 +46,7 @@
     <Compile Include="Cache\Fight\FightCache.cs" />
     <Compile Include="Cache\Fight\FightRoom.cs" />
     <Compile Include="Cache\Fight\LibraryModel.cs" />
+    <Compile Include="Cache\Fight\RoundModel.cs" />
     <Compile Include="Cache\Match\MatchCache.cs" />
     <Compile Include="Cache\Match\MatchRoom.cs" />
     <Compile Include="Logic\FightHandler.cs" />

@@ -30,20 +30,23 @@ namespace Server.Cache.Fight
         public void Create()
         {
             CardQueue = new Queue<CardDto>();
-            //create 3 to 2 ,no jocker
+
             for (int suit = CardSuit.CLUB; suit <= CardSuit.DIAMOND; suit++)
             {
+                //create 3 to 2 ,no jocker
                 for (int weight = CardWeight.THREE; weight <= CardWeight.TWO; weight++)
                 {
+
                     string cardName = CardSuit.GetString(suit) + CardWeight.GetString(weight);
+
                     CardDto card = new CardDto(cardName, suit, weight);
                     CardQueue.Enqueue(card);
                 }
-                CardDto sJoker = new CardDto("SJoker", CardSuit.NONE, CardWeight.SJOKER);
-                CardDto lJoker = new CardDto("LJoker", CardSuit.NONE, CardWeight.LJOKER);
-                CardQueue.Enqueue(sJoker);
-                CardQueue.Enqueue(lJoker);
             }
+            CardDto sJoker = new CardDto("SJoker", CardSuit.NONE, CardWeight.SJOKER);
+            CardDto lJoker = new CardDto("LJoker", CardSuit.NONE, CardWeight.LJOKER);
+            CardQueue.Enqueue(sJoker);
+            CardQueue.Enqueue(lJoker);
         }
 
         public void Shuffle()

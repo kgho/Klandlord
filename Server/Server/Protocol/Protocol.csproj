@@ -45,10 +45,12 @@
     <Compile Include="Code\OpCode.cs" />
     <Compile Include="Code\UserCode.cs" />
     <Compile Include="Constant\CardSuit.cs" />
+    <Compile Include="Constant\CardType.cs" />
     <Compile Include="Constant\CardWeight.cs" />
     <Compile Include="Constant\Identity.cs" />
     <Compile Include="Dto\AccountDto.cs" />
     <Compile Include="Dto\Fight\CardDto.cs" />
+    <Compile Include="Dto\Fight\DealDto.cs" />
     <Compile Include="Dto\Fight\GrabDto.cs" />
     <Compile Include="Dto\Fight\PlayerDto.cs" />
     <Compile Include="Dto\MatchRoomDto.cs" />

@@ -9,6 +9,8 @@ public class CardCtrl : MonoBehaviour
     //card data
     public CardDto cardDto { get; private set; }
 
+    public bool selected { get; set; }
+
     private SpriteRenderer spriteRenderer;
 
     private bool isMine;
@@ -44,5 +46,18 @@ public class CardCtrl : MonoBehaviour
         spriteRenderer.sprite = sp;
         //spriteRenderer.sprite = Resources.Load(resPath, typeof(Sprite)) as Sprite;
         spriteRenderer.sortingOrder = index;
+    }
+
+    private void OnMouseDown()
+    {
+        print("s");
+        if (!isMine)
+            return;
+        this.selected = !selected;
+        if (selected)
+            transform.localPosition += new Vector3(0, 0.3f, 0);
+        else
+            transform.localPosition -= new Vector3(0, 0.3f, 0);
+
     }
 }

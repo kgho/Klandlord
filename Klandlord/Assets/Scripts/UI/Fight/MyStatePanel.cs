@@ -12,7 +12,8 @@ public class MyStatePanel : StatePanel
     {
         base.Awake();
         Bind(UIEvent.PLAYER_HIDE_READY_BUTTON,
-            UIEvent.SHOW_GRAB_BUTTON);
+            UIEvent.SHOW_GRAB_BUTTON,
+            UIEvent.SHOW_DEAL_BUTTON);
     }
 
     public override void Execute(int eventCode, object message)
@@ -30,6 +31,13 @@ public class MyStatePanel : StatePanel
                     bool active = (bool)message;
                     btnGrab.gameObject.SetActive(active);
                     btnNGrab.gameObject.SetActive(active);
+                    break;
+                }
+            case UIEvent.SHOW_DEAL_BUTTON:
+                {
+                    bool active = (bool)message;
+                    btnDeal.gameObject.SetActive(active);
+                    btnNDeal.gameObject.SetActive(active);
                     break;
                 }
             default:
@@ -90,7 +98,7 @@ public class MyStatePanel : StatePanel
 
     void DealClick()
     {
-
+        Dispatch(AreaCode.CHARACTER, CharacterEvent.DEAL_CARD, null);
     }
 
     void NDealClick()

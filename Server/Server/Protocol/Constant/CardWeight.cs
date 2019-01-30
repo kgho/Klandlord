@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Protocol.Dto.Fight;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,6 +64,29 @@ namespace Protocol.Constant
                 default:
                     throw new Exception("Don't exist:" + weight);
             }
+        }
+
+        public static int GetWeight(List<CardDto> cardList, int cardType)
+        {
+            int totalWeight = 0;
+            if (cardType == CardType.THREE_ONE || cardType == CardType.THREE_TWO)
+            {
+                for (int i = 0; i < cardList.Count - 2; i++)
+                {
+                    if (cardList[i].Weight == cardList[i + 1].Weight && cardList[i].Weight == cardList[i + 2].Weight)
+                    {
+                        totalWeight += (cardList[i].Weight * 3);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < cardList.Count; i++)
+                {
+                    totalWeight += cardList[i].Weight;
+                }
+            }
+            return totalWeight;
         }
     }
 }

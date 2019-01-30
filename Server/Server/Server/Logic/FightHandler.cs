@@ -78,6 +78,7 @@ namespace Server.Logic
                     Broadcast(fightRoom, OpCode.FIGHT, FightCode.GRAB_LANDLORD_BROADCAST, dto);
 
                     //enter deal phase
+                    Broadcast(fightRoom, OpCode.FIGHT, FightCode.TURN_DEAL_BROADCAST, userId);
                 }
                 else
                 {
