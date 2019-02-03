@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4174208438581564}
   - component: {fileID: 212293452468800908}
   - component: {fileID: 114396010825184472}
+  - component: {fileID: 65489342514065814}
   m_Layer: 0
   m_Name: MyCard
   m_TagString: Untagged
@@ -41,6 +42,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65489342514065814
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1565350654917276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 1.04, z: 0.2}
+  m_Center: {x: -0.3, y: 0, z: 0}
 --- !u!114 &114396010825184472
 MonoBehaviour:
   m_ObjectHideFlags: 1

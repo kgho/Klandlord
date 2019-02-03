@@ -27,6 +27,14 @@ public class FightHandler : HandlerBase
             case FightCode.TURN_DEAL_BROADCAST:
                 turnDealBroadcast((int)value);
                 break;
+            case FightCode.DEAL_SRES:
+                Debug.Log("Deal response");
+                dealResponse((int)value);
+                break;
+            case FightCode.DEAL_BROADCAST:
+                Debug.Log("Deal broadcast");
+                dealBroadcast(value as DealDto);
+                break;
             default:
                 break;
         }
@@ -83,4 +91,39 @@ public class FightHandler : HandlerBase
         }
     }
 
+    private void dealResponse(int result)
+    {
+        if (result == -1)
+        {
+            Debug.Log("Deal too small");
+        }
+        else if (result == 0)
+        {
+            Dispatch(AreaCode.UI, UIEvent.SHOW_DEAL_BUTTON, false);
+        }
+    }
+
+    private void dealBroadcast(DealDto dto)
+    {
+        //remove deal cards
+        int userId = dto.UserId;
+        int eventCode = -1;
+        if (dto.UserId == Models.GameModel.MatchRoomDto.LeftId)
+        {
+            eventCode = CharacterEvent.REMOVE_LEFT_CARD;
+        }
+        else if (dto.UserId == Models.GameModel.MatchRoomDto.RightId)
+        {
+            eventCode = CharacterEvent.REMOVE_RIGHT_CARD;
+        }
+        else if (dto.UserId == Models.GameModel.UserDto.Id)
+        {
+            eventCode = CharacterEvent.REMOVE_MY_CARD;
+        }
+        //update current palyer hands
+        Dispatch(AreaCode.CHARACTER, eventCode, dto.RemainCardList);
+        //update ui
+        Dispatch(AreaCode.CHARACTER, CharacterEvent.UPDATE_SHOW_DESK, dto.selectCardList);
+
+    }
 }

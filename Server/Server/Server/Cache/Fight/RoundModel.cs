@@ -18,10 +18,25 @@ namespace Server.Cache.Fight
         /// </summary>
         public int CurrentUserId { get; set; }
 
+        public int LastCardType { get; set; }
+
+        public int LastWeight { get; set; }
+
+        public int LastLength { get; set; }
+
         public void Start(int userId)
         {
             this.CurrentUserId = userId;
             this.BiggestUserId = userId;
+        }
+
+        //change who to deal
+        public void Change(int length, int type, int weight, int userId)
+        {
+            this.BiggestUserId = userId;
+            this.LastLength = length;
+            this.LastCardType = type;
+            this.LastWeight = weight;
         }
     }
 }

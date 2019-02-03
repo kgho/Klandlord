@@ -33,6 +33,12 @@ public class CardCtrl : MonoBehaviour
         this.cardDto = card;
         this.isMine = isMine;
 
+        if (selected == true)
+        {
+            selected = false;
+            transform.localPosition -= new Vector3(0, 0.3f, 0);
+        }
+
         string resPath = string.Empty;
         if (isMine)
         {
@@ -50,14 +56,16 @@ public class CardCtrl : MonoBehaviour
 
     private void OnMouseDown()
     {
-        print("s");
-        if (!isMine)
+        if (isMine == false)
             return;
         this.selected = !selected;
-        if (selected)
+        if (selected == true)
+        {
             transform.localPosition += new Vector3(0, 0.3f, 0);
+        }
         else
+        {
             transform.localPosition -= new Vector3(0, 0.3f, 0);
-
+        }
     }
 }

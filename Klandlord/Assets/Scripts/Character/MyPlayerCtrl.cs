@@ -14,7 +14,8 @@ public class MyPlayerCtrl : CharacterBase
     {
         Bind(CharacterEvent.INIT_MY_CARD,
             CharacterEvent.ADD_MY_CARD,
-            CharacterEvent.DEAL_CARD);
+            CharacterEvent.DEAL_CARD,
+            CharacterEvent.REMOVE_MY_CARD);
     }
 
     private Transform cardParent;
@@ -42,6 +43,9 @@ public class MyPlayerCtrl : CharacterBase
                 break;
             case CharacterEvent.DEAL_CARD:
                 dealSelectCard();
+                break;
+            case CharacterEvent.REMOVE_MY_CARD:
+                removeCard(message as List<CardDto>);
                 break;
             default:
                 break;
@@ -121,6 +125,32 @@ public class MyPlayerCtrl : CharacterBase
             }
         }
         return selectCardList;
+    }
+
+    private void removeCard(List<CardDto> remainCardList)
+    {
+        int index = 0;
+        foreach (var cardCtrl in cardCtrlList)
+        {
+            if (remainCardList.Count == 0)
+                break;
+            else
+            {
+                cardCtrl.gameObject.SetActive(true);
+                cardCtrl.Init(remainCardList[index], index, true);
+                index++;
+                if (index == remainCardList.Count)
+                {
+                    break;
+                }
+            }
+        }
+        //hide cards whitch index is bigger than index
+        for (int i = index; i < cardCtrlList.Count; i++)
+        {
+            cardCtrlList[i].selected = false;
+            cardCtrlList[i].gameObject.SetActive(false);
+        }
     }
 }
 

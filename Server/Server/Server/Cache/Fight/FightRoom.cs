@@ -54,6 +54,7 @@ namespace Server.Cache.Fight
             this.TableCardList = new List<CardDto>();
             this.Multiple = 1;
             this.UIdClientDict = new Dictionary<int, ClientPeer>();
+            this.roundModel = new RoundModel();
         }
 
         /// <summary>
@@ -173,6 +174,107 @@ namespace Server.Cache.Fight
                 }
             }
             throw new Exception("No user to deal");
+        }
+
+
+        public RoundModel roundModel { get; set; }
+        /// <summary>
+        /// 判断能不能压上一回合的牌
+        /// </summary>
+        public bool DeadCard(int type, int weight, int length, int userId, List<CardDto> cardList)
+        {
+            bool canDeal = false;
+            if (type == roundModel.LastCardType && weight > roundModel.LastWeight)
+            {
+                if (type == CardType.STRAIGHT || type == CardType.DOUBLE_STRAIGHT || type == CardType.TRIPLE_STRAIGHT)
+                {
+                    //length limit
+                    if (length == roundModel.LastLength)
+                    {
+                        canDeal = true;
+                    }
+                }
+                else
+                {
+                    canDeal = true;
+                }
+            }
+            else if (type == CardType.BOOM && roundModel.LastCardType != CardType.BOOM)
+            {
+                canDeal = true;
+            }
+            else if (type == CardType.JOKER_BOOM)
+            {
+                canDeal = true;
+            }
+            else if (userId == roundModel.BiggestUserId)
+            {
+                canDeal = true;
+            }
+
+            if (canDeal)
+            {
+                //remove hands
+                RemoveCards(userId, cardList);
+                if (type == CardType.BOOM)
+                    Multiple *= 2;
+                else if (type == CardType.JOKER_BOOM)
+                    Multiple *= 4;
+
+                //save round infomation
+                roundModel.Change(length, type, weight, userId);
+            }
+            return canDeal;
+        }
+
+        public void RemoveCards(int userId, List<CardDto> cardList)
+        {
+            //get player hands
+            List<CardDto> currList = getUserCards(userId);
+
+            List<CardDto> list = new List<CardDto>();
+            foreach (var select in cardList)
+            {
+                for (int i = currList.Count - 1; i >= 0; i--)
+                {
+                    list.Add(currList[i]);
+                    break;
+                }
+            }
+            foreach (var card in list)
+            {
+                currList.Remove(card);
+            }
+        }
+
+        /// <summary>
+        /// get player data model
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public PlayerDto GetPlayerModel(int userId)
+        {
+            foreach (PlayerDto player in PlayerList)
+            {
+                if (player.UserId == userId)
+                {
+                    return player;
+                }
+            }
+            throw new Exception("No this player!Can't get data!");
+        }
+
+        /// <summary>
+        /// change deal player
+        /// </summary>
+        /// <returns></returns>
+        public int Turn()
+        {
+            int currentUserId = roundModel.CurrentUserId;
+            int nextUserId = GetNextUserId(currentUserId);
+            //change round information
+            roundModel.CurrentUserId = nextUserId;
+            return nextUserId;
         }
     }
 }

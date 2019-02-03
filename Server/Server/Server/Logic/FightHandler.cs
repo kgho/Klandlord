@@ -26,6 +26,9 @@ namespace Server.Logic
                     bool result = (bool)value;
                     grabLandlord(client, result);
                     break;
+                case FightCode.DEAL_CREQ:
+                    deal(client, value as DealDto);
+                    break;
                 default:
                     break;
             }
@@ -87,6 +90,54 @@ namespace Server.Logic
                     Broadcast(fightRoom, OpCode.FIGHT, FightCode.TURN_GRAB_BROADCAST, nextUserId);
                 }
             });
+        }
+
+        private void deal(ClientPeer client, DealDto dto)
+        {
+            SingleExecute.Instance.Execute(() =>
+            {
+                if (!userCache.IsOnline(client))
+                    return;
+                int userId = userCache.GetId(client);
+                if (userId != dto.UserId)
+                {
+                    return;
+                }
+                FightRoom fightRoom = fightCache.GetRoomByUId(userId);
+
+                bool canDeal = fightRoom.DeadCard(dto.Type, dto.Weight, dto.Length, dto.UserId, dto.selectCardList);
+                if (canDeal == false)
+                {
+                    client.Send(OpCode.FIGHT, FightCode.DEAL_SRES, -1);
+                    return;
+                }
+                else
+                {
+                    //send deal successful message
+                    client.Send(OpCode.FIGHT, FightCode.DEAL_SRES, 0);
+
+                    //check reamin hands
+                    List<CardDto> remainCard = fightRoom.GetPlayerModel(userId).CardList;
+
+                    dto.RemainCardList = remainCard;
+                    Broadcast(fightRoom, OpCode.FIGHT, FightCode.DEAL_BROADCAST, dto);
+                    if (remainCard.Count == 0)
+                    {
+                        //Game Over
+                    }
+                    else
+                    {
+                        Turn(fightRoom);
+                    }
+                }
+            });
+        }
+
+        //change deal player
+        private void Turn(FightRoom room)
+        {
+            int nextUserId = room.Turn();
+            Broadcast(room, OpCode.FIGHT, FightCode.TURN_DEAL_BROADCAST, nextUserId);
         }
 
         public void Broadcast(FightRoom room, int opCode, int subCode, object value, ClientPeer currentClient = null)

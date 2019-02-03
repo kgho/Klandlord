@@ -14,6 +14,7 @@ namespace Protocol.Code
         public const int TURN_DEAL_BROADCAST = 3;
         public const int DEAL_CREQ = 4;
         public const int DEAL_SRES = 5;
+        public const int DEAL_BROADCAST = 6;//broadcast deal result
 
         /// <summary>
         /// //server send client get hands
