@@ -103,7 +103,8 @@ public class MyStatePanel : StatePanel
 
     void NDealClick()
     {
-
+        socketMsg.Change(OpCode.FIGHT, FightCode.PASS_CREQ, null);
+        Dispatch(AreaCode.NET, 0, socketMsg);
     }
 
     void GrabOnCliek(bool result)

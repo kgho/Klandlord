@@ -35,6 +35,10 @@ public class FightHandler : HandlerBase
                 Debug.Log("Deal broadcast");
                 dealBroadcast(value as DealDto);
                 break;
+            case FightCode.PASS_SRES:
+                Debug.Log("{ass");
+                nDealResponse((int)value);
+                break;
             default:
                 break;
         }
@@ -91,15 +95,35 @@ public class FightHandler : HandlerBase
         }
     }
 
+    PromptMsg promptMsg = new PromptMsg();
+
     private void dealResponse(int result)
     {
         if (result == -1)
         {
+            promptMsg.Change("Deal too small", Color.red);
+            Dispatch(AreaCode.UI, UIEvent.PROMPT_MSG, promptMsg);
             Debug.Log("Deal too small");
+            Dispatch(AreaCode.UI, UIEvent.SHOW_DEAL_BUTTON, true);
         }
         else if (result == 0)
         {
             Dispatch(AreaCode.UI, UIEvent.SHOW_DEAL_BUTTON, false);
+        }
+    }
+
+    private void nDealResponse(int result)
+    {
+        if (result == 0)
+        {
+            Dispatch(AreaCode.UI, UIEvent.SHOW_DEAL_BUTTON, false);
+        }
+        else if (result == -1)//biggest,must to deal
+        {
+            //提示必须出牌
+            Dispatch(AreaCode.UI, UIEvent.SHOW_DEAL_BUTTON, true);
+            promptMsg.Change("You must to deal", Color.red);
+            Dispatch(AreaCode.UI, UIEvent.PROMPT_MSG, promptMsg);
         }
     }
 

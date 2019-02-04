@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-H:/WorkSpace/Klandlord/Klandlord/BUILD/Klandlord.exe
+H:/WorkSpace/Klandlord/Klandlord/Build/Klandlord.exe
 SceneListBegin?
 Assets/Scenes/0.login.unity
 Assets/Scenes/1.main.unity

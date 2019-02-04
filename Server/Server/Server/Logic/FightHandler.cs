@@ -29,6 +29,9 @@ namespace Server.Logic
                 case FightCode.DEAL_CREQ:
                     deal(client, value as DealDto);
                     break;
+                case FightCode.PASS_CREQ:
+                    pass(client);
+                    break;
                 default:
                     break;
             }
@@ -130,6 +133,25 @@ namespace Server.Logic
                         Turn(fightRoom);
                     }
                 }
+            });
+        }
+
+        private void pass(ClientPeer client)
+        {
+            SingleExecute.Instance.Execute(() =>
+            {
+                if (!userCache.IsOnline(client))
+                    return;
+                int userId = userCache.GetId(client);
+                FightRoom fightRoom = fightCache.GetRoomByUId(userId);
+
+                if (fightRoom.roundModel.BiggestUserId == userId)
+                {
+                    client.Send(OpCode.FIGHT, FightCode.PASS_SRES, -1);
+                    return;
+                }
+                client.Send(OpCode.FIGHT, FightCode.PASS_SRES, 0);
+                Turn(fightRoom);
             });
         }
 

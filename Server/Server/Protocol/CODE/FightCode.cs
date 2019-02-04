@@ -15,6 +15,8 @@ namespace Protocol.Code
         public const int DEAL_CREQ = 4;
         public const int DEAL_SRES = 5;
         public const int DEAL_BROADCAST = 6;//broadcast deal result
+        public const int PASS_CREQ = 7;
+        public const int PASS_SRES = 8;
 
         /// <summary>
         /// //server send client get hands
