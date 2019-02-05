@@ -36,7 +36,7 @@ public class FightHandler : HandlerBase
                 dealBroadcast(value as DealDto);
                 break;
             case FightCode.PASS_SRES:
-                Debug.Log("{ass");
+                Debug.Log("Pass");
                 nDealResponse((int)value);
                 break;
             default:

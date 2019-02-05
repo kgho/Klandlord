@@ -237,8 +237,11 @@ namespace Server.Cache.Fight
             {
                 for (int i = currList.Count - 1; i >= 0; i--)
                 {
-                    list.Add(currList[i]);
-                    break;
+                    if (currList[i].Name == select.Name)
+                    {
+                        list.Add(currList[i]);
+                        break;
+                    }
                 }
             }
             foreach (var card in list)

@@ -84,6 +84,7 @@ public class MyPlayerCtrl : CharacterBase
         {
             cardCtrl.gameObject.SetActive(true);
             cardCtrl.Init(playerCards[index], index, true);
+            index++;
         }
 
         //create 3 new card

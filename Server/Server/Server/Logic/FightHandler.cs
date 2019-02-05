@@ -126,7 +126,7 @@ namespace Server.Logic
                     Broadcast(fightRoom, OpCode.FIGHT, FightCode.DEAL_BROADCAST, dto);
                     if (remainCard.Count == 0)
                     {
-                        //Game Over
+                        Console.WriteLine("Game Over");
                     }
                     else
                     {
