@@ -8,6 +8,7 @@ using Protocol.Code;
 using Protocol.Dto.Fight;
 using Server.Cache;
 using Server.Cache.Fight;
+using Server.Model;
 
 namespace Server.Logic
 {
@@ -127,6 +128,7 @@ namespace Server.Logic
                     if (remainCard.Count == 0)
                     {
                         Console.WriteLine("Game Over");
+                        gameOver(userId, fightRoom);
                     }
                     else
                     {
@@ -160,6 +162,52 @@ namespace Server.Logic
         {
             int nextUserId = room.Turn();
             Broadcast(room, OpCode.FIGHT, FightCode.TURN_DEAL_BROADCAST, nextUserId);
+        }
+
+        private void gameOver(int userId, FightRoom room)
+        {
+            int winIdentity = room.GetPlayerIdentity(userId);
+            int winBean = room.Multiple * 1000;
+            List<int> winUserIdList = room.GetSameIdentityUserId(winIdentity);
+
+            //win player pluas win count
+            for (int i = 0; i < winUserIdList.Count; i++)
+            {
+                UserModel um = userCache.GetModelByAccountId(winUserIdList[i]);
+                um.WinCount++;
+                um.Been = winBean;
+                um.Exp = um.LV * 100;
+                int maxExp = um.LV * 100;
+                while (maxExp <= um.Exp)
+                {
+                    um.LV++;
+                    um.Exp -= maxExp;
+                }
+                userCache.Update(um);
+            }
+            //add lose count to loser
+            List<int> loseUIds = room.GetDifferentIdentityUserId(winIdentity);
+            for (int i = 0; i < loseUIds.Count; i++)
+            {
+                UserModel um = userCache.GetModelById(loseUIds[i]);
+                um.LoseCount++;
+                um.Been -= winBean;
+                um.Exp += 10;
+                int maxExp = um.LV * 100;
+                while (maxExp <= um.Exp)
+                {
+                    um.LV++;
+                    um.Exp -= maxExp;
+                }
+                userCache.Update(um);
+            }
+            OverDto dto = new OverDto();
+            dto.WinIdentity = winIdentity;
+            dto.WinUserIdList = winUserIdList;
+            dto.BeanCount = winBean;
+            Broadcast(room, OpCode.FIGHT, FightCode.Over_BROADCAST, dto);
+
+            fightCache.Destroy(room);
         }
 
         public void Broadcast(FightRoom room, int opCode, int subCode, object value, ClientPeer currentClient = null)

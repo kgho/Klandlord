@@ -1,5 +1,6 @@
 ﻿using AhpilyServer;
 using AhpilyServer.Concurrent;
+using Protocol.Dto.Fight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Server.Cache.Fight
     {
         private ConcurrentInt id = new ConcurrentInt(-1);
 
-        private Dictionary<int, int> uIddRoomIdDict = new Dictionary<int, int>();
+        private Dictionary<int, int> uIdRoomIdDict = new Dictionary<int, int>();
 
         //room id ,room model objcet
         private Dictionary<int, FightRoom> idRoomDict = new Dictionary<int, FightRoom>();
@@ -41,7 +42,7 @@ namespace Server.Cache.Fight
 
             foreach (int uid in uidList)
             {
-                uIddRoomIdDict.Add(uid, room.Id);
+                uIdRoomIdDict.Add(uid, room.Id);
                 ClientPeer client = userCache.GetClientPeer(uid);
                 room.StartFight(uid, client);
             }
@@ -58,13 +59,27 @@ namespace Server.Cache.Fight
 
         public FightRoom GetRoomByUId(int uid)
         {
-            if (uIddRoomIdDict.ContainsKey(uid) == false)
+            if (uIdRoomIdDict.ContainsKey(uid) == false)
             {
                 throw new Exception(string.Format("The user id is {0} is not in room", uid));
             }
-            int roomId = uIddRoomIdDict[uid];
+            int roomId = uIdRoomIdDict[uid];
             FightRoom room = GetRoom(roomId);
             return room;
+        }
+
+        public void Destroy(FightRoom room)
+        {
+            idRoomDict.Remove(room.Id);
+            foreach(PlayerDto player in room.PlayerList)
+            {
+                uIdRoomIdDict.Remove(player.UserId);
+            }
+            //init room data
+            room.PlayerList.Clear();
+            room.TableCardList.Clear();
+            room.libraryModel.Init();
+            roomQueue.Enqueue(room);
         }
 
     }

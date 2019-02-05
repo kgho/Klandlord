@@ -39,6 +39,10 @@ public class FightHandler : HandlerBase
                 Debug.Log("Pass");
                 nDealResponse((int)value);
                 break;
+            case FightCode.Over_BROADCAST:
+                Debug.Log("Over broadcast");
+                overBroadcast(value as OverDto);
+                break;
             default:
                 break;
         }
@@ -149,5 +153,18 @@ public class FightHandler : HandlerBase
         //update ui
         Dispatch(AreaCode.CHARACTER, CharacterEvent.UPDATE_SHOW_DESK, dto.selectCardList);
 
+    }
+
+    private void overBroadcast(OverDto overDto)
+    {
+        if (overDto.WinUserIdList.Contains(Models.GameModel.Id))
+        {
+            Debug.Log("You Win");
+        }
+        else
+        {
+            Debug.Log("You Lose");
+        }
+        Dispatch(AreaCode.UI, UIEvent.SHOW_OVER_PANEL, overDto);
     }
 }

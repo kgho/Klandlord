@@ -279,5 +279,37 @@ namespace Server.Cache.Fight
             roundModel.CurrentUserId = nextUserId;
             return nextUserId;
         }
+
+        public int GetPlayerIdentity(int userId)
+        {
+            return GetPlayerModel(userId).Identity;
+            throw new Exception("No this palyer! Can't get data");
+        }
+
+        public List<int> GetSameIdentityUserId(int identity)
+        {
+            List<int> userIdList = new List<int>();
+            foreach (PlayerDto player in PlayerList)
+            {
+                if (player.Identity == identity)
+                {
+                    userIdList.Add(player.UserId);
+                }
+            }
+            return userIdList;
+        }
+
+        public List<int> GetDifferentIdentityUserId(int identity)
+        {
+            List<int> userIdList = new List<int>();
+            foreach (PlayerDto player in PlayerList)
+            {
+                if (player.Identity != identity)
+                {
+                    userIdList.Add(player.UserId);
+                }
+            }
+            return userIdList;
+        }
     }
 }

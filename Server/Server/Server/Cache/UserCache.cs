@@ -87,5 +87,17 @@ namespace Server.Cache
         {
             return idClientDict[id];
         }
+
+        public void Update(UserModel model)
+        {
+            idModelDict[model.ID] = model;
+        }
+
+        public UserModel GetModelById(int userId)
+        {
+            UserModel user = idModelDict[userId];
+            return user;
+        }
+
     }
 }
