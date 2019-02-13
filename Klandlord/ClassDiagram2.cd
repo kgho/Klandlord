@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CardCtrl" Collapsed="true">
+    <Position X="56.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACAAACAAAAAAAAAAAAAAAAgAIAACAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\CardCtrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterBase" Collapsed="true" HideInheritanceLine="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Character\CharacterBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterEvent" Collapsed="true">
+    <Position X="58.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQACAQAAAEAAAIAggAAAAAAAAAAACAEAACAA=</HashCode>
+      <FileName>Assets\Scripts\Character\CharacterEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DeskCtrl" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAQAAAAAABAAAAAQAAAAgIAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Character\DeskCtrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeftPlayerCtrl" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAQACAAAABQAAAAAAAAAgAAAAAAAAUA=</HashCode>
+      <FileName>Assets\Scripts\Character\LeftPlayerCtrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyPlayerCtrl" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAADAAAAQAAAAAABQAAAAAAAQAgIAAAAEAAUA=</HashCode>
+      <FileName>Assets\Scripts\Character\MyPlayerCtrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RightPlayerCtrl" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAQACAAAABQAAAAAAAAAgAAAAAAAAUA=</HashCode>
+      <FileName>Assets\Scripts\Character\RightPlayerCtrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AreaCode" Collapsed="true">
+    <Position X="54.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAgAAAAAAIAAAAAAAAAAAEAI=</HashCode>
+      <FileName>Assets\Scripts\Framework\AreaCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManagerBase">
+    <Position X="31.25" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Framework\ManagerBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonoBase" Collapsed="true">
+    <Position X="27.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Framework\MonoBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MsgCenter">
+    <Position X="34.25" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Framework\MsgCenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameModel" Collapsed="true">
+    <Position X="56.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Model\GameModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Models" Collapsed="true">
+    <Position X="56.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Model\Models.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientPeer" Collapsed="true">
+    <Position X="60" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAQAAAAAAgEAAAYAAAAAAAA0AEAEgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Net\ClientPeer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HandlerBase" Collapsed="true">
+    <Position X="3.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Net\HandlerBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AccoutHandler" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAQAAAQAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Net\Impl\AccoutHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FightHandler" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAiAAAAIAQACAAAAAAAAAAIAAgAAAQAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Net\Impl\FightHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MatchHandler" Collapsed="true">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAQAAgAAgAAAAQAAAAAAAAAAAAEACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Net\Impl\MatchHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserHandler" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAEAAQAAAAEAAAAAAAAAAAAAAAAAAAAABAABA=</HashCode>
+      <FileName>Assets\Scripts\Net\Impl\UserHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoginScene" Collapsed="true">
+    <Position X="60" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scene\LoginScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainScene" Collapsed="true">
+    <Position X="54.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scene\MainScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoadSceneMsg" Collapsed="true">
+    <Position X="58.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAACAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scene\Msg\LoadSceneMsg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneEvent" Collapsed="true">
+    <Position X="60" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scene\SceneEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneID" Collapsed="true">
+    <Position X="54.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scene\SceneID.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayPanel">
+    <Position X="26.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAKAAAAAAAAAAAAAAAIAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Login\PlayPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RegistPanel">
+    <Position X="28.75" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAABAAAIACAAAAQAAAAABBAAAIAAAABAAIAAAAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Login\RegistPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PromptMsg" Collapsed="true">
+    <Position X="58.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\Msg\PromptMsg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIBase">
+    <Position X="27.5" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAgBggAAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\UIBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIEvent" Collapsed="true">
+    <Position X="58.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAAIABAAKQgAAQAAIAIAQAABJiAAAAACACAAAAQQ=</HashCode>
+      <FileName>Assets\Scripts\UI\UIEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIManager">
+    <Position X="31.25" Y="5.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIMgr" Collapsed="true">
+    <Position X="60" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAABAAAAAAAAAAACAAAAAAAAAAAAAAQAQAAABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\UIMgr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Scripts.Net.EncodeTool" Collapsed="true">
+    <Position X="54.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAEAAgAAAAAAAAEAAAAAgAAAAAIA=</HashCode>
+      <FileName>Assets\Scripts\Net\EncodeTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Scripts.Net.SocketMsg" Collapsed="true">
+    <Position X="56.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAQ=</HashCode>
+      <FileName>Assets\Scripts\Net\SocketMsg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

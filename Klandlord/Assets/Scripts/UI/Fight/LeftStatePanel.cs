@@ -29,7 +29,6 @@ public class LeftStatePanel : StatePanel
     // Use this for initialization
     protected override void Start()
     {
-        print("left");
         base.Start();
         MatchRoomDto room = Models.GameModel.MatchRoomDto;
         int leftId = room.LeftId;

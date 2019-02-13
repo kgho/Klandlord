@@ -85,5 +85,20 @@ namespace GameServer.Server.Cache
             room.ReadyUserIdList.Clear();
             roomQueue.Enqueue(room);
         }
+
+        //leave match room
+        public MatchRoom Leave(int userId)
+        {
+            int roomId = uidRoomIdDict[userId];
+            MatchRoom room = roomIdModelDict[roomId];
+            room.Leave(userId);
+            uidRoomIdDict.Remove(userId);
+            if (room.IsEmpty())
+            {
+                roomIdModelDict.Remove(roomId);
+                roomQueue.Enqueue(room);
+            }
+            return room;
+        }
     }
 }

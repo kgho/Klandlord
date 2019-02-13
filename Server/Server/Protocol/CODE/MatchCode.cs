@@ -13,5 +13,7 @@ namespace Protocol.Code
         public const int READY_CREQ = 3;
         public const int READY_BROADCAST = 4;
         public const int START_BROADCAST = 5;
+        public const int LEAVE_CREQ = 6;
+        public const int LEAVE_BROADCAST = 7;
     }
 }

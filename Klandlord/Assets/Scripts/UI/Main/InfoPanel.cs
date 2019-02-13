@@ -14,6 +14,7 @@ public class InfoPanel : UIBase
     private Text txtExp;
     private Text txtBeen;
     private Button BtnMatch;
+    private Button BtnSetting;
 
     private SocketMsg socketMsg;
 
@@ -45,8 +46,10 @@ public class InfoPanel : UIBase
         txtExp = transform.Find("TextExp").GetComponent<Text>();
         txtBeen = transform.Find("TextBeen").GetComponent<Text>();
         BtnMatch = transform.Find("ButtonMatch").GetComponent<Button>();
+        BtnSetting = transform.Find("ButtonSetting").GetComponent<Button>();
 
         BtnMatch.onClick.AddListener(BtnMatchClick);
+        BtnSetting.onClick.AddListener(ButtonSettingClick);
 
         socketMsg = new SocketMsg();
     }
@@ -67,5 +70,10 @@ public class InfoPanel : UIBase
         txtExp.text = string.Format("{0}/{1}", exp, lv * 100);
         sldExp.value = (float)exp / (lv * 100);
         txtBeen.text = string.Format("x{0}", been);
+    }
+
+    private void ButtonSettingClick()
+    {
+        Dispatch(AreaCode.UI, UIEvent.SETTING_PANEL_ACTIVE, true);
     }
 }

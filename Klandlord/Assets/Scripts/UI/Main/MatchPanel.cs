@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Net;
+using Protocol.Code;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,11 +39,19 @@ public class MatchPanel : UIBase
         btnEnter.onClick.AddListener(EnterCliek);
 
         setPanelActive(false);
+
+        socketMsg = new SocketMsg();
     }
+
+    private SocketMsg socketMsg;
 
     private void CancelClick()
     {
-        
+        //leave match queue
+        socketMsg.Change(OpCode.MATCH, MatchCode.LEAVE_CREQ, null);
+        Dispatch(AreaCode.NET, 0, socketMsg);
+
+        setPanelActive(false);
     }
 
     private void EnterCliek()

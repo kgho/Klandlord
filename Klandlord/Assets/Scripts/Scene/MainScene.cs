@@ -11,6 +11,7 @@ public class MainScene : MonoBehaviour
         UIMgr.Instance.OpenWindow("UIMain/InfoPanel", SceneID.Main);
         UIMgr.Instance.OpenWindow("UIMain/CreatePanel", SceneID.Main);
         UIMgr.Instance.OpenWindow("UIMain/MatchPanel", SceneID.Main);
+        UIMgr.Instance.OpenWindow("UIMain/SettingPanel", SceneID.Main);
     }
 
 }

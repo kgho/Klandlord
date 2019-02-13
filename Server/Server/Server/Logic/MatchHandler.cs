@@ -34,6 +34,9 @@ namespace Server.Logic
                 case MatchCode.READY_CREQ:
                     ready(client);
                     break;
+                case MatchCode.LEAVE_CREQ:
+                    leave(client);
+                    break;
                 default:
                     break;
             }
@@ -67,7 +70,6 @@ namespace Server.Logic
             });
         }
 
-
         private MatchRoomDto makeRoomDto(MatchRoom room)
         {
             MatchRoomDto dto = new MatchRoomDto();
@@ -82,7 +84,6 @@ namespace Server.Logic
             dto.ReadyUserIdList = room.ReadyUserIdList;
             return dto;
         }
-
 
         /// <summary>
         /// player ready
@@ -113,6 +114,28 @@ namespace Server.Logic
                     matchCache.Destroy(room);
                 }
             });
+        }
+
+        private void leave(ClientPeer client)
+        {
+            SingleExecute.Instance.Execute(
+                delegate ()
+                {
+                    if (!userCache.IsOnline(client))
+                        return;
+
+                    int userId = userCache.GetId(client);
+                    if (matchCache.IsMatching(userId) == false)
+                    {
+                        Console.WriteLine("User is not matching!");
+                        return;
+                    }
+                    MatchRoom room = matchCache.Leave(userId);
+                    //broadcast to all player ,someone leave
+                    room.Broadcast(OpCode.MATCH, MatchCode.LEAVE_BROADCAST, userId);
+
+                    Console.WriteLine("Some player leave!");
+                });
         }
     }
 }

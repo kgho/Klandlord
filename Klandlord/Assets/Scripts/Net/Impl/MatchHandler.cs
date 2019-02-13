@@ -24,6 +24,9 @@ public class MatchHandler : HandlerBase
             case MatchCode.START_BROADCAST:
                 startBroadcast();
                 break;
+            case MatchCode.LEAVE_BROADCAST:
+                leaveBro((int)value);
+                break;
             default:
                 break;
         }
@@ -85,6 +88,15 @@ public class MatchHandler : HandlerBase
         MatchRoomDto matchRoom = gModel.MatchRoomDto;
 
         matchRoom.ResetPosition(gModel.UserDto.Id);
+    }
+
+    private void leaveBro(int leaveUserId)
+    {
+        Dispatch(AreaCode.UI, UIEvent.PLAYER_LEAVE, leaveUserId);
+
+        resetPosition();
+
+        Models.GameModel.MatchRoomDto.Leave(leaveUserId);
     }
 }
 

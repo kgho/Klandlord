@@ -17,6 +17,7 @@ public class StatePanel : UIBase
         Bind(UIEvent.PLAY_CHANGE_IDENTITY);
         Bind(UIEvent.SHOW_TIMER_PANEL);
         Bind(UIEvent.HIDE_TIMER_PANEL);
+        Bind(UIEvent.PLAYER_LEAVE);
     }
 
     public override void Execute(int eventCode, object message)
@@ -56,6 +57,15 @@ public class StatePanel : UIBase
                     int userId = (int)message;
                     if (userDto.Id == userId)
                         setIdentity(1);
+                    break;
+                }
+            case UIEvent.PLAYER_LEAVE:
+                {
+                    if (userDto == null)
+                        break;
+                    int userId = (int)message;
+                    if (userDto.Id == userId)
+                        setPanelActive(false);
                     break;
                 }
             default:

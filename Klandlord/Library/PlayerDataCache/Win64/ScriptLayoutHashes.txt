@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-H:/WorkSpace/Klandlord/Klandlord/Build/Klandlord.exe
+J:/WorkSpace/Klandlord/Klandlord/Build/Klandlord.exe
 SceneListBegin?
 Assets/Scenes/0.login.unity
 Assets/Scenes/1.main.unity
@@ -23,6 +23,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.StatePanel
 f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
+6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.OverPanel
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
 9cbe71ddeecdcf13e733811597e98990 Assembly-CSharp.dll:.PromptPanel
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -196,4 +197,4 @@ e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.LeftStatePanel
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
-6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.OverPanel
+6b0d3ed0d36b367c908aa9201eae52a6 Assembly-CSharp.dll:.SettingPanel
